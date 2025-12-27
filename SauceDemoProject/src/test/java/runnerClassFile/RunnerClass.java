@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions( features = {"Features/SauceDemo.feature"},
                   glue =     {"stepDefinations"},
-                  plugin =   {"pretty","html:target/cucumber-reports",
+                  plugin =   {"pretty","html:target/cucumber-reports","json:target/cucumberfile.json",
                               "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                               "rerun:target/failedReRun.txt"},        	
                   monochrome = true )

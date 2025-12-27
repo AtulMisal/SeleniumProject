@@ -4,57 +4,60 @@
   <artifactId>SauceDemoProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-<properties>
+ <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>21</maven.compiler.release>
-</properties>
-
+  </properties>
 <dependencies>  
-
 	<dependency>
 	    <groupId>io.cucumber</groupId>
 	    <artifactId>cucumber-java</artifactId>
 	    <version>7.14.0</version>
 	</dependency>
-	
 	<dependency>
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>
 	    <version>2.21.0</version>
 	</dependency>
-	
 	<dependency>
 	    <groupId>io.cucumber</groupId>
 	    <artifactId>cucumber-testng</artifactId>
 	    <version>7.14.0</version>
 	</dependency>
-	
 	<dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
 	    <version>4.34.0</version>
 	</dependency>
-	
 	<dependency>
 	    <groupId>org.apache.poi</groupId>
 	    <artifactId>poi-ooxml</artifactId>
 	    <version>5.4.0</version>
 	</dependency>
-	
 	<dependency>
         <groupId>tech.grasshopper</groupId>
         <artifactId>extentreports-cucumber7-adapter</artifactId>
         <version>1.13.0</version>
     </dependency>	
-	
 	<dependency>
 	    <groupId>io.github.bonigarcia</groupId>
 	    <artifactId>webdrivermanager</artifactId>
 	    <version>6.0.1</version>
 	</dependency>
+	<dependency>
+       <groupId>org.projectlombok</groupId>
+       <artifactId>lombok</artifactId>
+       <version>1.18.30</version>
+       <scope>provided</scope>
+   </dependency>
+	<dependency>
+	    <groupId>com.sun</groupId>
+	    <artifactId>tools</artifactId>
+	    <version>1.5.0</version>
+	    <systemPath>${JAVA_HOME}\lib\tools-1.5.0.jar</systemPath>
+	    <scope>system</scope>
+	</dependency>	
  </dependencies>
-    
-    
  <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -63,6 +66,20 @@
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
+	<plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-compiler-plugin</artifactId>
+	    <version>3.11.0</version>
+	    <configuration>
+	        <release>21</release>
+	        <compilerArgs>
+	            <arg>--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+	            <arg>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+	            <arg>--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+	            <arg>--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+	        </compilerArgs>
+	    </configuration>
+	</plugin>		  
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -71,23 +88,17 @@
         <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.14.1</version>
-				
+				<version>2.22.1</version>
 				<configuration>
 					<!-- Suite testng xml file to consider for test execution -->
 					<suiteXmlFiles>
 						<suiteXmlFile>Testng.xml</suiteXmlFile>
-
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.10.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
